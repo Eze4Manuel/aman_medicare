@@ -1,0 +1,81 @@
+.pricing {
+    background-color: #eee;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    .pricing-container {
+        background-color: #fff;
+        width: 70%;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 20px;
+        border-radius: 10px;
+        .pricing-image {
+            text-align: center;
+            img {
+                width: 300px;
+            }
+        }
+        .pricing-table {
+            table {
+                border-radius: 7px;
+                margin: 0px 0px;
+
+                th {
+                    text-align: center;
+                    font-size: 15px;
+                    font-weight: bold;
+                    background: #ecf2ff;
+                }
+
+                td {
+                    text-align: center;
+                    font-weight: bold;
+                    color: #555;
+                }
+                tr:first-child {
+                    td:first-child {
+                        text-align: center;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ant-tabs-tab .ant-tabs-tab-btn {
+    font-size: 18px;
+    font-weight: bold;
+    color: #276aff;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    font-size: 20px;
+    font-weight: bold;
+    // color: #09A479;
+    color: #000;
+}
+
+
+@media screen and (max-width: 700px){
+    .pricing{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .pricing .pricing-container{
+        margin: 3px;
+        width: 100%;
+        border-radius: 0px;
+    }
+    .pricing .pricing-container .pricing-image img{
+        width: 200px;
+    }
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn, .ant-tabs-tab .ant-tabs-tab-btn{
+        font-size: 14px;
+    }
+    .pricing .pricing-container .pricing-table table th, .pricing .pricing-container .pricing-table table td, .pricing .pricing-container .pricing-table table tr:first-child td:first-child {
+        
+        font-size: 12px;
+    }
+}

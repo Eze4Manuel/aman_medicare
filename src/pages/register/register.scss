@@ -1,0 +1,87 @@
+
+.layout{
+    padding: 50px;
+
+}
+.profile-top{
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    
+    .profile-image{
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         height: 200px;
+         width: 200px;
+         border-radius: 10px;
+        margin-bottom: 10px;
+        
+    }
+    .profile-form{
+        margin-top: 40px;
+        margin-bottom: 10px;
+        div.form-group{
+            display: flex;
+            input{
+                height: 40px;
+                border-radius: 5px;
+            }
+        }
+        div.profile-password{
+            margin-top: 40px;
+            h2{
+                color: #276AFF;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            
+        }
+        .profile-button{
+            margin-top: 40px;
+            .disney_button{
+                display: flex;
+            }
+            button{
+                background-color: #276AFF;
+                columns: #fff;
+            }
+        }
+    }
+} 
+
+.terms{
+    h3{
+        font-weight: bold;
+    }
+    h4{
+        font-weight: bold;
+    }
+}
+
+
+
+@media screen and (max-width: 700px){
+    .profile-top .profile-image{
+        width: 130px;
+        height: 130px;
+    }
+    .layout{
+        padding: 30px 0px;
+        background-color: #fff;
+        height: 100%;
+    }
+    .profile-top {
+        padding: 10px 0px;
+        .profile-form div.form-group{
+            flex-direction: column;
+        }
+    }
+    .profile-top .profile-form .profile-button button{
+        padding: 5px;
+    }
+    .profile-top .profile-form .profile-button .disney_button{
+        flex-direction: column;
+        text-align: center;
+    }
+}

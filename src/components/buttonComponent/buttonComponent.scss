@@ -1,0 +1,76 @@
+.button_component{
+   
+}
+
+.go_back_button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: fit-content;
+    span{
+        margin-right: 5px;
+        margin-left: 5px;
+        font-size: 20px;
+        padding-bottom: 10px;
+        font-weight: bold;
+        color: #747474;
+    }
+    span:first-child{
+        font-size: 30px;
+        padding-bottom: 0px;
+        line-height: 20px;
+        top: 2px;
+        position: relative;
+        color: #747474;
+
+    }
+}
+
+.go_back_button_component{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #276AFF;
+    cursor: pointer;
+    width:  300px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin: auto;
+    
+    span{
+        margin-right: 5px;
+        margin-left: 5px;
+        font-size: 20px;
+        padding-bottom: 10px;
+        font-weight: bold;
+        color: #fff;
+    }
+    span:first-child{
+        font-size: 30px;
+        padding-bottom: 0px;
+        line-height: 20px;
+        top: 2px;
+        position: relative;
+        color: #fff;
+
+    }
+}
+
+
+.action_button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-align: center;
+
+    button{
+        width: 90%;
+        background-color: #276AFF;
+        color: #fff;
+        border: none;
+        padding: 10px 10px;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        
+    }
+}

@@ -1,0 +1,15 @@
+.error-message__wp {
+    background: lightgoldenrodyellow;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.error-message {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    color: red;
+    font-size: 11px;
+    line-height: 20px;
+}

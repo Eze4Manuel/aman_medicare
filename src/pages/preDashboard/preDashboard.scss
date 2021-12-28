@@ -1,0 +1,86 @@
+.predashboard {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    padding: 50px 0px;
+    h2 {
+        text-align: center;
+        font-size: 60px;
+        margin-top: 30px;
+        color: #fff;
+        font-weight: 200;
+        text-transform: uppercase;
+    }
+
+    .predashboard-center {
+        text-align: center;
+        width: fit-content;
+        border-radius: 10px;
+        margin: auto;
+    }
+}
+.ant-layout-content {
+    height: initial;
+}
+.ant-layout-sider{
+    min-width: 300px!important;
+}
+
+.user-details{
+    padding: 30px;
+    margin: 30px 30px;
+    .user-details-block{
+        background-color: #fff;
+        padding: 30px;
+        margin-bottom: 40px;
+    }
+}
+
+.ant-layout-sider-zero-width-trigger{
+    top: 34px;
+}
+.list_data{
+    background-color: #fff;
+    padding: 30px;
+    font-size: 13px;
+}
+
+
+@media screen and (max-width: 700px ){
+    .ant-layout-sider{
+        min-width: 0px!important;
+    }
+    .user-details{
+        margin: 0px;
+        padding: 20px 0px;
+    }
+    .list_data{
+        background-color: #fff;
+        padding: 20px 10px;
+        font-size: 13px;
+    }
+    .ant-list-item-meta-title{
+        font-weight: bold;
+    }
+    .ant-list-item-meta-description{
+        font-size: 13px;
+    }
+    .profile-top{
+        padding: 0px 30px;
+    }
+}
+
+
+// #components-layout-demo-responsive .logo {
+//     height: 32px;
+//     margin: 16px;
+//     background: rgba(255, 255, 255, 0.2);
+//   }
+  
+//   .site-layout-sub-header-background {
+//     background: #fff;
+//   }
+  
+//   .site-layout-background {
+//     background: #fff;
+//   }

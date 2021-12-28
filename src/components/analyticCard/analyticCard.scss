@@ -1,0 +1,39 @@
+
+.custom-cards{
+    background-color: #276AFF;
+    padding: 15px 12px;
+    // width: 254px;
+    border-radius: 106px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    cursor: pointer;
+
+
+    .custom-cards-middle{
+        padding-left: 10px;
+        img {
+           padding-bottom: 10px;
+        }
+        b.custom-cards-middle-text {
+            font-size: 18px;
+            color: #fff;
+            padding: 0px 20px;
+            font-weight: normal;
+        }
+    }
+}
+.custom-cards:hover{
+    transform: scale(1.05);
+    transition: 0.3s;
+
+}
+
+
+@media screen and (max-width: 650px ){
+    .custom-cards{
+        flex-grow: 1;
+    }
+}
