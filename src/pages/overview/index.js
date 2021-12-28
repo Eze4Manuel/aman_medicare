@@ -1,6 +1,6 @@
 
 import ActionSelect from '../../components/actionSelect/actionSelect';
-import { Layout, Menu } from 'antd';
+// import { Layout, Menu } from 'antd';
 import './overview.scss';
 import aman from '../../assets/images/medic.png'; // Tell webpack this JS file uses this image
 

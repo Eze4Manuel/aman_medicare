@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import { useNavigate } from "react-router-dom"
 import logogreen from '../../assets/images/icon/logogreen.png'; // Tell webpack this JS file uses this image
-import account from '../../assets/images/account.png'; // Tell webpack this JS file uses this image
+// import account from '../../assets/images/account.png'; // Tell webpack this JS file uses this image
 import { PageHeaderComp } from '../../components/pageHeader/pageHeader';
 import { InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons';
 import { ButtonComponent } from '../../components/buttonComponent/buttonComponent';
 import './preDashboard.scss';
 import { Layout, Menu } from 'antd';
-import { Table, Tag, Space } from 'antd';
+// import { Table, Tag, Space } from 'antd';
 import { useAuth } from '../../core/hooks/useAuth';
 import { useNotifications } from '@mantine/notifications';
 import helpers from '../../core/Helpers';
@@ -30,28 +30,26 @@ import {
 import { Form, Row, Col, DatePicker, Radio } from 'antd';
 import { Input } from 'antd';
 
-const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
 
-const { Header, Footer } = Layout;
+const { Header } = Layout;
 
 const { TextArea } = Input;
 
 
 
 const PreDashboard = () => {
-    const [formLayout,] = useState('vertical');
+    const [,] = useState('vertical');
     const navigate = useNavigate();
     const { set, user } = useAuth();
 
     const [isPrincipalModalVisible, setIsPrincipalModalVisible] = useState(false);
     const [isDependentModalVisible, setIsDependentModalVisible] = useState(false);
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [, setIsModalVisible] = useState(false);
 
 
     useEffect(() => {
         if (!user) navigate('/login');
-
     })
 
 
@@ -77,22 +75,12 @@ const PreDashboard = () => {
         console.log(record);
         setIsModalVisible(true);
     }
-
-
-
-
-    const handleOk = () => {
-        setIsModalVisible(false);
-    };
-
+    
     const logUserOut = () => {
         helpers.logout(set);
         navigate('/login')
     };
-
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    };
+ 
 
     return (
         <>
@@ -109,7 +97,7 @@ const PreDashboard = () => {
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
 
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <img style={{ width: "120px", textAlign: "center", margin: "auto" }} src={logogreen} />
+                            <img alt="img" style={{ width: "120px", textAlign: "center", margin: "auto" }} src={logogreen} />
                         </div>
                         <p style={{ marginBottom: "50px", textAlign: "center" }} >AMAN MEDICARE</p>
                         <Menu.Item key="1" onClick={showPrincipalModal} icon={<PieChartOutlined />}>
@@ -165,22 +153,16 @@ export default PreDashboard;
 const DependantEdit = (props) => {
     const [form] = Form.useForm();
     const [,] = useState('hidden');
-    const navigate = useNavigate();
-    const [value1, setValue1] = useState();
     const [values, setValues] = useState();
     const notify = useNotifications();
-    const { set, user } = useAuth();
+    const { user } = useAuth();
 
     const options = [
         { label: 'Male', value: 'Male' },
         { label: 'Female', value: 'Female' },
     ];
 
-    const onChange1 = (e) => {
-        console.log('radio1 checked', e.target.value);
-        setValue1(e.target.value)
-    };
-
+   
     const selectDate = (date, dateString) => {
         setValues(d => ({ ...d, birth_day: dateString }))
     }
@@ -330,9 +312,8 @@ const DependantEdit = (props) => {
 
 const PricipalEdit = (props) => {
     const [form] = Form.useForm();
-    const navigate = useNavigate();
     const [values, setValues] = React.useState({});
-    const { set, user } = useAuth();
+    const { user } = useAuth();
     const notify = useNotifications();
     const [error, setError] = React.useState(false);
     const [loading, setLoading] = useState(false);
@@ -342,8 +323,8 @@ const PricipalEdit = (props) => {
     const [imageUrlID, setImageUrlID] = useState();
     const [pic, setPic] = useState();
     const [id, setId] = useState();
-    const [primary_health, setPrimaryHealth] = useState([]);
-    const [secondary_health, setSecondaryHealth] = useState([]);
+    const [primary_health, ] = useState([]);
+    const [secondary_health, ] = useState([]);
 
     const { Option } = Select;
 
@@ -494,17 +475,14 @@ const PricipalEdit = (props) => {
     };
 
     const fetchProviders = async (e) => {
-        console.log(e.toUpperCase());
 
         let reqData = await lib.getProviders();
         if (reqData.data?.error === 1) {
             helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.data.message })
         }
-        if (reqData.data?.error === 0 || reqData.statusText == 'OK') {
+        if (reqData.data?.error === 0 || reqData.statusText === 'OK') {
             helpers.alert({ notifications: notify, icon: 'success', color: 'green', message: reqData.data.message })
         }
-        console.log(reqData);
-        console.log(JSON.parse(reqData?.data));
         setLoading(false);
     }
 
@@ -523,14 +501,11 @@ const PricipalEdit = (props) => {
                                         layout="vertical"
                                     >
                                         <div className="">
-
-
                                             <div className='form-group'>
                                                 <Form.Item label="Insurance package" tooltip={{ title: 'Insurance package', icon: <InfoCircleOutlined /> }} >
                                                     <Input disabled value={user?.insurance_package} placeholder="Basic, Bronze, Silver ..." style={{ width: "250px", marginRight: "10px" }} />
                                                 </Form.Item>
                                             </div>
-
                                             <div className='form-group'>
                                                 <Form.Item label="First Name" required tooltip="Enter your name">
                                                     <Input onChange={e => setValues(d => ({ ...d, first_name: e.target.value }))} value={values?.first_name} placeholder="John" style={{ width: "250px", marginRight: "10px" }} />
@@ -703,100 +678,100 @@ const PricipalEdit = (props) => {
 }
 
 
-const TableSelected = (props) => {
-    return (
-        <Modal title="Basic Modal" visible={props.isModalVisible} onOk={props.handleOk} onCancel={props.handleCancel}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-        </Modal>
-    )
-}
+// const TableSelected = (props) => {
+//     return (
+//         <Modal title="Basic Modal" visible={props.isModalVisible} onOk={props.handleOk} onCancel={props.handleCancel}>
+//             <p>Some contents...</p>
+//             <p>Some contents...</p>
+//             <p>Some contents...</p>
+//         </Modal>
+//     )
+// }
 
 
-const TableData = (props) => {
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-            render: text => <img style={{ width: "80px", height: "60px", borderRadius: "500px" }} src={account} />,
-        },
-        {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
-        {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: tags => (
-                <>
-                    {tags.map(tag => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
-        },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-                <Space size="middle">
-                    <a>Invite {record.name}</a>
-                    <a>Delete</a>
-                </Space>
-            ),
-        },
-    ];
+// const TableData = (props) => {
+//     const columns = [
+//         {
+//             title: 'Name',
+//             dataIndex: 'name',
+//             key: 'name',
+//             render: text => <img style={{ width: "80px", height: "60px", borderRadius: "500px" }} src={account} />,
+//         },
+//         {
+//             title: 'Age',
+//             dataIndex: 'age',
+//             key: 'age',
+//         },
+//         {
+//             title: 'Address',
+//             dataIndex: 'address',
+//             key: 'address',
+//         },
+//         {
+//             title: 'Tags',
+//             key: 'tags',
+//             dataIndex: 'tags',
+//             render: tags => (
+//                 <>
+//                     {tags.map(tag => {
+//                         let color = tag.length > 5 ? 'geekblue' : 'green';
+//                         if (tag === 'loser') {
+//                             color = 'volcano';
+//                         }
+//                         return (
+//                             <Tag color={color} key={tag}>
+//                                 {tag.toUpperCase()}
+//                             </Tag>
+//                         );
+//                     })}
+//                 </>
+//             ),
+//         },
+//         {
+//             title: 'Action',
+//             key: 'action',
+//             render: (text, record) => (
+//                 <Space size="middle">
+//                     <a>Invite {record.name}</a>
+//                     <a>Delete</a>
+//                 </Space>
+//             ),
+//         },
+//     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
-    return (
-        <Table
-            onRow={(record, rowIndex) => {
-                return {
-                    onClick: event => { props.onSelected(record, rowIndex) }, // click row
-                }
-            }}
-            columns={columns} dataSource={data} />
-    )
-}
+//     const data = [
+//         {
+//             key: '1',
+//             name: 'John Brown',
+//             age: 32,
+//             address: 'New York No. 1 Lake Park',
+//             tags: ['nice', 'developer'],
+//         },
+//         {
+//             key: '2',
+//             name: 'Jim Green',
+//             age: 42,
+//             address: 'London No. 1 Lake Park',
+//             tags: ['loser'],
+//         },
+//         {
+//             key: '3',
+//             name: 'Joe Black',
+//             age: 32,
+//             address: 'Sidney No. 1 Lake Park',
+//             tags: ['cool', 'teacher'],
+//         },
+//     ];
+//     return (
+//         <Table
+//             onRow={(record, rowIndex) => {
+//                 return {
+//                     onClick: event => { props.onSelected(record, rowIndex) }, // click row
+//                 }
+//             }}
+//             columns={columns} dataSource={data} />
+//     )
+// }
 
 
 

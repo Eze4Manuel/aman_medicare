@@ -1,5 +1,4 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 import './buttonComponent.scss';
 
 export const ButtonComponent = (props) => {
@@ -36,8 +35,7 @@ export const GoBackComponent = (props) => {
 
 
 export const ActionButtonComponent = (props) => {
-    let styles = {
-    }
+     
     return (
         <div className="action_button" onClick={props.onClick}>
             <button style={{ color: props.color, backgroundColor: props.bgColor, width: props.width }}>

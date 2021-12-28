@@ -204,7 +204,7 @@ const Pricing = () => {
         <div className='pricing' >
             <div className='pricing-container'>
                 <div className='pricing-image'>
-                    <img src={aman} />
+                    <img src={aman} alt="img" />
                 </div>
 
                 <div className='pricing-table'>

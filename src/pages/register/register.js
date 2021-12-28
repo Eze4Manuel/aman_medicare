@@ -9,7 +9,6 @@ import { useAuth } from '../../core/hooks/useAuth';
 import helpers from '../../core/Helpers';
 import Loader from "react-loader-spinner";
 import ErrorMessage from '../../components/error/ErrorMessage';
-
 import { Form, Input } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { ButtonComponent } from '../../components/buttonComponent/buttonComponent';
@@ -17,9 +16,6 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { Modal } from 'antd';
 import lib from '../lib';
 import formValidator from '../formvalidation';
-
-
-
 
 const Register = (props) => {
     const [form] = Form.useForm();
@@ -31,21 +27,13 @@ const Register = (props) => {
     const { set, } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = React.useState(false);
-
     const { Option } = Select;
-
     const notify = useNotifications();
-    const [data, setData] = useState()
-
-    function handleChange(value) {
-        console.log(`selected ${value}`);
-    }
-
+    const [, setData] = useState();
 
     const showModal = () => {
         setIsModalVisible(true);
     };
-
     useEffect(() => {
         if (!state) {
             navigate('/pricing');
@@ -60,13 +48,9 @@ const Register = (props) => {
         }
         setLoading(true);
         setIsModalVisible(false);
-
         builder.insurance_package = state.option;
-
         let reqData = await lib.register(builder)
         setLoading(false);
-
-        console.log(reqData);
 
         if (reqData.status === 'error') {
             helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.msg })
@@ -78,23 +62,17 @@ const Register = (props) => {
             helpers.alert({ notifications: notify, icon: 'success', color: 'green', message: reqData.data.message })
             helpers.loadUserInStore(reqData?.data)
             set(reqData?.data)
-
-            setTimeout(() => {
-                navigate('/predashboard');
-            }, 2000
-            )
+            setTimeout(() => { navigate('/predashboard');}, 2000)
             setData((reqData.data));
         }
-
     };
-
     const handleCancel = () => {
         setIsModalVisible(false);
     };
 
+
     return (
         <Structure className="users-post-profile" >
-
             <div style={{ width: "90%", margin: "auto" }}>
                 <div>
                     <div className="profile-image" style={{ backgroundImage: `url(${logom})` }}></div>
@@ -115,7 +93,6 @@ const Register = (props) => {
                                                     <Option value="corporate">Corporate</Option>
                                                 </Select>
                                             </Form.Item>
-
                                             {(values.category === 'corporate') ?
                                                 <Form.Item label="Association Code" required tooltip="Enter your Association code">
                                                     <Input onChange={e => setValues(d => ({ ...d, association_code: e.target.value }))} autoFocus value={values?.association_code} placeholder="23SWIWQQ" style={{ width: "250px", marginRight: "10px" }} />
@@ -126,7 +103,6 @@ const Register = (props) => {
                                             <Form.Item label="Full Name" required tooltip="Enter your Full name">
                                                 <Input onChange={e => setValues(d => ({ ...d, name: e.target.value }))} autoFocus value={values?.name} placeholder="John" style={{ width: "250px", marginRight: "10px" }} />
                                             </Form.Item>
-
                                             <Form.Item label="Add additional dependents" required tooltip="Input number of dependents">
                                                 <Select defaultValue="1" style={{ width: "250px", marginRight: "10px" }} onChange={e => setValues(d => ({ ...d, enrolee_size: e }))} value={values?.enrolee_size}  >
                                                     <Option value="1">1</Option>
@@ -141,9 +117,7 @@ const Register = (props) => {
                                                     <Option value="10">10</Option>
                                                 </Select>
                                             </Form.Item>
-
                                         </div>
-
                                         <div className='form-group'>
                                             <Form.Item label="Email" required tooltip={{ title: 'Enter your email address', icon: <InfoCircleOutlined /> }}>
                                                 <Input type="email" onChange={e => setValues(d => ({ ...d, email: e.target.value }))} value={values?.email} placeholder="example@gmail.com" style={{ width: "250px", marginRight: "10px" }} />
@@ -153,7 +127,6 @@ const Register = (props) => {
                                             </Form.Item>
                                         </div>
                                         <div className='form-group'>
-
                                             <Form.Item label="Phone Number" required tooltip={{ title: 'Enter your phone number', icon: <InfoCircleOutlined /> }}>
                                                 <Input onChange={e => setValues(d => ({ ...d, phone: e.target.value }))} value={values?.phone} placeholder="0801 234 5678" style={{ width: "250px", marginRight: "10px" }} />
                                             </Form.Item>
@@ -161,7 +134,6 @@ const Register = (props) => {
                                                 <Input onChange={e => setValues(d => ({ ...d, confirm_phone: e.target.value }))} value={values?.confirm_phone} placeholder="0801 234 5678" style={{ width: "250px", marginRight: "10px" }} />
                                             </Form.Item>
                                         </div>
-
                                         <div className='form-group'>
                                             <Form.Item label="Password" required tooltip="Password should be more than six characters">
                                                 <Input onChange={e => setValues(d => ({ ...d, password: e.target.value }))} value={values?.password} type='password' placeholder="*********" style={{ width: "250px", marginRight: "10px" }} />
@@ -171,9 +143,6 @@ const Register = (props) => {
                                             </Form.Item>
                                         </div>
                                     </div>
-
-
-
                                     <div className="profile-button" >
                                         <Form.Item>
                                             <div className='disney_button'>
@@ -183,12 +152,10 @@ const Register = (props) => {
                                             </div>
                                         </Form.Item>
                                     </div>
-
                                     <ModalContent isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel} />
                                 </Form>
                             </div>
                         </Col>
-
                     </Row>
                 </div>
             </div>
@@ -312,8 +279,6 @@ const ModalContent = (props) => {
                         <p>Healthcare Providers are categorized by Aman Medicare for the benefit of ease of access to care by its Enrollees. Aman Medicare reserves the right to review this categorization from time to time without prior recourse to an Enrollee. This could include (but not limited to) the addition and deletion of healthcare providers from the general list and/or from a specific plan provider list. An Enrollee will however always have access to a number of healthcare facilities within their applicable Aman Medicare network of Providers.</p>
                     </div>
                 </div>
-
-
                 <div>
                     <h3>Section II - Description of benefits</h3>
                     <div>
@@ -346,8 +311,6 @@ const ModalContent = (props) => {
                         </ul>
                     </div>
                 </div>
-
-
                 <div>
                     <h3>Section III - TAKAFUL PRINCIPLES AND CONDITIONS</h3>
                     <div>
@@ -366,14 +329,9 @@ const ModalContent = (props) => {
                             <li>If the Policyholder does not collect his/her share of surplus within a period of 12 months from the end of the financial year during which his policy expires, that share of surplus shall be considered as a donation by the policyholder to a takaful reserve fund to preserve the objective of providing health cover to current and future enrollees of Aman Medicare.</li>
                             <li>No more than 50% of the surplus shall be deducted as a donation for the takaful reserve provision. In case of the Association’s (Aman Medicare) liquidation, this reserve will be used for charity as decided by the Sharia Advisers after settlement of all the policyholders’ rights and claims from health service providers.</li>
                         </ul>
-
-
                     </div>
                 </div>
             </div>
-
-
-
         </Modal >
     )
 }
