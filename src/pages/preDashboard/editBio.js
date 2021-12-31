@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import ImgCrop from 'antd-img-crop';
 import { useNotifications } from '@mantine/notifications';
 
-import { Upload, message, Modal, Button } from 'antd';
+import {Modal, Button } from 'antd';
 import Loader from "react-loader-spinner";
 import helpers from '../../core/Helpers';
 import { Select } from 'antd';
@@ -10,20 +9,19 @@ import { Form } from 'antd';
 import { useAuth } from '../../core/hooks/useAuth';
 
 import lib from '../lib';
-import { InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import { useEffect } from 'react/cjs/react.development';
 
 
 
 const EditBio = (props) => {
-  const [form] = Form.useForm();
   const [values, setValues] = useState({});
   const [loading, setLoading] = useState(false);
   const [stateHealthCare, setStateHealtCare] = useState([]);
   const { Option } = Select;
   const notify = useNotifications();
   const [isBioVisible, setIsBioVisible] = useState(false);
-  const { set, user } = useAuth();
+  const { user } = useAuth();
 
 
 
@@ -52,7 +50,7 @@ const EditBio = (props) => {
         setStateHealtCare(reqData.data)
       }
     })()
-  },[])
+  },[notify, props.data?.state,user?.insurance_package])
 
 
   const handleBioOk = async () => {

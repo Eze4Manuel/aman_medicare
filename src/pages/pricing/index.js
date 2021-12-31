@@ -18,26 +18,25 @@ function callback(key) {
 const Pricing = () => {
     const navigate = useNavigate();
 
-    const dataSourceBasic = [
-        {
-            key: '1',
-            price: 'Coverage limit of upto N240,000',
+    // const dataSourceBasic = [
+    //     {
+    //         key: '1',
+    //         price: 'Coverage limit of upto N240,000',
+    //     },
+    //     {
+    //         key: '2',
+    //         price: 'Telemedicine',
 
-        },
-        {
-            key: '2',
-            price: 'Telemedicine',
-
-        },
-        {
-            key: '3',
-            price: 'Up to two specialist consultations per year',
-        },
-        {
-            key: '4',
-            price: 'Basic lab and routine radiological investigations',
-        },
-    ];
+    //     },
+    //     {
+    //         key: '3',
+    //         price: 'Up to two specialist consultations per year',
+    //     },
+    //     {
+    //         key: '4',
+    //         price: 'Basic lab and routine radiological investigations',
+    //     },
+    // ];
 
     const dataSourceBronze = [
         {
@@ -164,13 +163,13 @@ const Pricing = () => {
 
 
 
-    const columnBasic = [
-        {
-            title: 'Starting at N1500 per individual per month',
-            dataIndex: 'price',
-            key: 'price',
-        },
-    ];
+    // const columnBasic = [
+    //     {
+    //         title: 'Starting at N1500 per individual per month',
+    //         dataIndex: 'price',
+    //         key: 'price',
+    //     },
+    // ];
     const columnBronze = [
         {
             title: 'Starting at N35,784 for individuals and N136,122 for a family of six',

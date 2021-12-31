@@ -6,11 +6,9 @@ import Loader from "react-loader-spinner";
 import helpers from '../../core/Helpers';
 import { Select } from 'antd';
 import { Form } from 'antd';
-import { useAuth } from '../../core/hooks/useAuth';
 
 import lib from '../lib';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { useEffect } from 'react/cjs/react.development';
 
 const { TextArea } = Input;
 
@@ -20,11 +18,9 @@ const SuggestFaculty = (props) => {
     const [form] = Form.useForm();
     const [values, setValues] = useState({});
     const [loading, setLoading] = useState(false);
-    const [stateHealthCare, setStateHealtCare] = useState([]);
     const { Option } = Select;
     const notify = useNotifications();
     const [isBioVisible, setIsBioVisible] = useState(false);
-    const { set, user } = useAuth();
 
     const showBioModal = () => {
         setIsBioVisible(true);

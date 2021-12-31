@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './register.scss';
-import { Row, Col, Select } from 'antd';
+import { Select } from 'antd';
 import Structure from "../../components/layout/index";
 import logom from '../../assets/images/icon/logom.png'; // Tell webpack this JS file uses this image
 import { PageHeaderComp } from '../../components/pageHeader/pageHeader';
@@ -30,9 +30,9 @@ const Register = (props) => {
     const { Option } = Select;
     const notify = useNotifications();
     const [, setData] = useState();
-    const [basePrice, setBasePrice] = useState(state?.price);
-    const [familyPrice, setFamilyPrice] = useState(state?.sixPrice);
-    const [price, setPrice] = useState(state?.price);
+    const [basePrice, ] = useState(state?.price);
+    const [familyPrice, ] = useState(state?.sixPrice);
+    const [price, setPrice] = useState('');
     const [addedHeads, setAddedHeads] = useState(0);
     const [premiumType, setPremiumType] = useState('Individual');
     const [socialwarn, setSocialWarn] = useState('');
@@ -48,9 +48,15 @@ const Register = (props) => {
         }
     })
 
+    const numberWithCommas = (x) => {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
+
     const handleOk = async () => {
         console.log(validSocial);
-        if (validSocial == false) {
+        if (validSocial === false) {
             helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: "Invalid Assocaition Code" })
             return
         }
@@ -156,7 +162,7 @@ const Register = (props) => {
                     </div>
                     <div className='profile-form' style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <h3>Selected Plan:<b> {state?.option}</b></h3>
-                        <h3>Price:<b> N{price}</b></h3>
+                        {price.length !== 0 ? <h3>Price:<b> N{numberWithCommas(price)}</b></h3> : null}
                         <br />
                         <Form form={form} layout="vertical">
 

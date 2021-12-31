@@ -26,7 +26,7 @@ import {
     UserOutlined
 } from '@ant-design/icons';
 
-import { Form, Input, Row, Col, DatePicker, Radio, Button } from 'antd';
+import { Form, Input, Row, Col, DatePicker, Radio } from 'antd';
 import UploadImage from './uploadImage';
 import SuggestFaculty from './suggestFaculty';
 import EditBio from './editBio';
@@ -70,7 +70,7 @@ const PreDashboard = () => {
                 setData(principal);
             }
         })()
-    }, [])
+    }, [navigate, notify, user])
 
 
     // Getting dependent
@@ -92,7 +92,7 @@ const PreDashboard = () => {
             console.log(reqData);
 
         })()
-    }, [])
+    }, [notify, user?.policy_no])
 
 
     const showDependentModal = () => {

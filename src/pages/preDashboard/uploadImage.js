@@ -5,14 +5,7 @@ import { useNotifications } from '@mantine/notifications';
 import { Upload, message, Modal, Button } from 'antd';
 import Loader from "react-loader-spinner";
 import helpers from '../../core/Helpers';
-import { Select } from 'antd';
-import { Form } from 'antd';
-import { useAuth } from '../../core/hooks/useAuth';
-
 import lib from '../lib';
-import { InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons';
-import { useEffect } from 'react/cjs/react.development';
-
 
 
 
