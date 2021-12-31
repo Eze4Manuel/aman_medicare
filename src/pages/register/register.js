@@ -165,7 +165,6 @@ const Register = (props) => {
                         {price.length !== 0 ? <h3>Price:<b> N{numberWithCommas(price)}</b></h3> : null}
                         <br />
                         <Form form={form} layout="vertical">
-
                             <div className="">
                                 <div className='form-group'>
                                     <Form.Item label="Premium Type" required tooltip="Select premium type">

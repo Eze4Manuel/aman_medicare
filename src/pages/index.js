@@ -5,7 +5,7 @@ import {
   Route
 } from 'react-router-dom';
 
-import Overview from './overview';
+import Pricing from './pricing';
 import { routes } from './config';
 
 
@@ -18,7 +18,7 @@ const App = (props) => {
     <Router>
       <Fragment>
         <Routes>
-          <Route path='/' element={<Overview />} />
+          <Route path='/' element={<Pricing />} />
           {renderedRoutes}
         </Routes>
       </Fragment>

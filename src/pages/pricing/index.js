@@ -2,19 +2,16 @@ import { Table } from 'antd';
 
 import './pricing.scss';
 import aman from '../../assets/images/icon/person.png'; // Tell webpack this JS file uses this image
+import logo from '../../assets/images/icon/logogreen.png'; // Tell webpack this JS file uses this image
 import { Tabs } from 'antd';
 import { SelectButton } from '../../components/actionSelect/actionSelect'
 import { useNavigate } from "react-router-dom";
-
-
  
 const { TabPane } = Tabs;
 
 function callback(key) {
     console.log(key);
 }
-
-
 const Pricing = () => {
     const navigate = useNavigate();
 
@@ -159,10 +156,6 @@ const Pricing = () => {
             price: 'Cancer care (upto N500,000)',
         },
     ];
-
-
-
-
     // const columnBasic = [
     //     {
     //         title: 'Starting at N1500 per individual per month',
@@ -200,7 +193,13 @@ const Pricing = () => {
     ];
 
     return (
-        <div className='pricing' >
+        <div className='pricing' style={{
+            // backgroundImage:`url(${logo})`,
+            // backgroundRepeat: 'repeat',
+            // backgroundPosition: 'right',
+            // backgroundSize: 'contain',
+            // backgroundAttachment: "fixed" 
+            }}>
             <div className='pricing-container'>
                 <div className='pricing-image'>
                     <img src={aman} alt="img" />

@@ -34,23 +34,23 @@ const EditBio = (props) => {
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   (async () => {
+  //     let obj = {
+  //       state: props.data?.state,
+  //       plan_type: user?.insurance_package
+  //     }
+  //     let reqData = await lib.getProviders(obj);
+  //     console.log(reqData);
 
-    (async () => {
-      let obj = {
-        state: props.data?.state,
-        plan_type: user?.insurance_package
-      }
-      let reqData = await lib.getProviders(obj);
-
-      if (reqData.data?.error === 1) {
-        helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.data.message })
-      }
-      if (reqData?.error === 0) {
-        setStateHealtCare(reqData.data)
-      }
-    })()
-  },[notify, props.data?.state,user?.insurance_package])
+  //     if (reqData.data?.error === 1) {
+  //       helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.data.message })
+  //     }
+  //     if (reqData?.error === 0) {
+  //       setStateHealtCare(reqData.data)
+  //     }
+  //   })()
+  // })
 
 
   const handleBioOk = async () => {
