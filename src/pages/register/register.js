@@ -30,6 +30,14 @@ const Register = (props) => {
     const { Option } = Select;
     const notify = useNotifications();
     const [, setData] = useState();
+    const [basePrice, setBasePrice] = useState(state?.price);
+    const [familyPrice, setFamilyPrice] = useState(state?.sixPrice);
+    const [price, setPrice] = useState(state?.price);
+    const [addedHeads, setAddedHeads] = useState(0);
+    const [premiumType, setPremiumType] = useState('Individual');
+    const [socialwarn, setSocialWarn] = useState('');
+    const [validSocial, setValidSocial] = useState(true);
+
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -41,16 +49,36 @@ const Register = (props) => {
     })
 
     const handleOk = async () => {
+        console.log(validSocial);
+        if (validSocial == false) {
+            helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: "Invalid Assocaition Code" })
+            return
+        }
+        values.premium_type = premiumType
+        if (premiumType === 'family') {
+            values.additional_heads = 6 + parseInt(addedHeads) - 1
+            values.enrolee_size = 6 + parseInt(addedHeads)
+        } else {
+            values.additional_heads = parseInt(addedHeads)
+            values.enrolee_size = parseInt(addedHeads) + 1
+        }
+
+
+
         let builder = formValidator.validateAccountRegistration(values, {}, setError)
         if (!builder) {
             setIsModalVisible(false);
             return
         }
+
         setLoading(true);
         setIsModalVisible(false);
         builder.insurance_package = state.option;
+        builder.policy_cost = state.price;
+
+        console.log(builder);
+
         let reqData = await lib.register(builder)
-        setLoading(false);
 
         if (reqData.status === 'error') {
             helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.msg })
@@ -62,14 +90,58 @@ const Register = (props) => {
             helpers.alert({ notifications: notify, icon: 'success', color: 'green', message: reqData.data.message })
             helpers.loadUserInStore(reqData?.data)
             set(reqData?.data)
-            setTimeout(() => { navigate('/predashboard');}, 2000)
+            setTimeout(() => { navigate('/predashboard'); }, 2000)
             setData((reqData.data));
         }
+        setLoading(false);
     };
     const handleCancel = () => {
         setIsModalVisible(false);
     };
 
+    const handlePremium = (e) => {
+        if (e === 'family') {
+            setPrice(state?.sixPrice);
+        }
+        else {
+            setPrice(state?.price)
+        }
+        setAddedHeads(0)
+        setPremiumType(e)
+    }
+
+    const handleDependent = (e) => {
+        setAddedHeads(e)
+
+        if (premiumType === 'individual') {
+            setPrice(basePrice + (basePrice * e))
+        } else {
+            setPrice(familyPrice + (basePrice * e))
+
+        }
+    }
+
+    const handleFocusOut = async (e) => {
+        let obj = {
+            social_no: values.social_no
+        }
+        let reqData = await lib.validatSocial(obj)
+
+        if (reqData.status === 'error') {
+            helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.msg })
+        }
+        if (reqData?.error === 1) {
+            helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: "Invalid Social Number" })
+            setSocialWarn("Invalid Social Number");
+            setValidSocial(false)
+        }
+        if (reqData?.error === 0) {
+            // helpers.alert({ notifications: notify, icon: 'success', color: 'green', message: reqData.data.message })
+            setValidSocial(true);
+            setSocialWarn('');
+        }
+        console.log(reqData);
+    }
 
     return (
         <Structure className="users-post-profile" >
@@ -77,86 +149,98 @@ const Register = (props) => {
                 <div>
                     <div className="profile-image" style={{ backgroundImage: `url(${logom})` }}></div>
                 </div>
-                <PageHeaderComp title="Create An Account" />
                 <div className="profile-top" >
-                    <Row>
-                        <Col>
-                            <div className='profile-form'>
-                                <h3><b>{state?.option} PLAN</b></h3>
-                                <Form form={form} layout="vertical">
-                                    {error ? <ErrorMessage message={error} /> : null}
-                                    <div className="">
-                                        <div className='form-group'>
-                                            <Form.Item label="Category" required tooltip="Select a category">
-                                                <Select defaultValue="Select Category" onChange={e => setValues(d => ({ ...d, category: e }))} value={values?.category} style={{ width: "250px", marginRight: "10px" }}>
-                                                    <Option value="individual">Individual</Option>
-                                                    <Option value="corporate">Corporate</Option>
-                                                </Select>
-                                            </Form.Item>
-                                            {(values.category === 'corporate') ?
-                                                <Form.Item label="Association Code" required tooltip="Enter your Association code">
-                                                    <Input onChange={e => setValues(d => ({ ...d, association_code: e.target.value }))} autoFocus value={values?.association_code} placeholder="23SWIWQQ" style={{ width: "250px", marginRight: "10px" }} />
-                                                </Form.Item>
-                                                : null}
-                                        </div>
-                                        <div className='form-group'>
-                                            <Form.Item label="Full Name" required tooltip="Enter your Full name">
-                                                <Input onChange={e => setValues(d => ({ ...d, name: e.target.value }))} autoFocus value={values?.name} placeholder="John" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                            <Form.Item label="Add additional dependents" required tooltip="Input number of dependents">
-                                                <Select defaultValue="1" style={{ width: "250px", marginRight: "10px" }} onChange={e => setValues(d => ({ ...d, enrolee_size: e }))} value={values?.enrolee_size}  >
-                                                    <Option value="1">1</Option>
-                                                    <Option value="2">2</Option>
-                                                    <Option value="3">3</Option>
-                                                    <Option value="4">4</Option>
-                                                    <Option value="5">5</Option>
-                                                    <Option value="6">6</Option>
-                                                    <Option value="7">7</Option>
-                                                    <Option value="8">8</Option>
-                                                    <Option value="9">9</Option>
-                                                    <Option value="10">10</Option>
-                                                </Select>
-                                            </Form.Item>
-                                        </div>
-                                        <div className='form-group'>
-                                            <Form.Item label="Email" required tooltip={{ title: 'Enter your email address', icon: <InfoCircleOutlined /> }}>
-                                                <Input type="email" onChange={e => setValues(d => ({ ...d, email: e.target.value }))} value={values?.email} placeholder="example@gmail.com" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                            <Form.Item label="Confirm Email" required tooltip={{ title: 'Confirm your email address', icon: <InfoCircleOutlined /> }}>
-                                                <Input type="email" onChange={e => setValues(d => ({ ...d, confirm_email: e.target.value }))} value={values?.confirm_email} placeholder="example@gmail.com" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                        </div>
-                                        <div className='form-group'>
-                                            <Form.Item label="Phone Number" required tooltip={{ title: 'Enter your phone number', icon: <InfoCircleOutlined /> }}>
-                                                <Input onChange={e => setValues(d => ({ ...d, phone: e.target.value }))} value={values?.phone} placeholder="0801 234 5678" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                            <Form.Item label="Confirm Phone Number" required tooltip={{ title: 'Confirm your phone number', icon: <InfoCircleOutlined /> }}>
-                                                <Input onChange={e => setValues(d => ({ ...d, confirm_phone: e.target.value }))} value={values?.confirm_phone} placeholder="0801 234 5678" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                        </div>
-                                        <div className='form-group'>
-                                            <Form.Item label="Password" required tooltip="Password should be more than six characters">
-                                                <Input onChange={e => setValues(d => ({ ...d, password: e.target.value }))} value={values?.password} type='password' placeholder="*********" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                            <Form.Item label="Confirm Password" required tooltip="Password should be more than six characters">
-                                                <Input onChange={e => setValues(d => ({ ...d, confirm_password: e.target.value }))} value={values?.confirm_password} type='password' placeholder="*********" style={{ width: "250px", marginRight: "10px" }} />
-                                            </Form.Item>
-                                        </div>
-                                    </div>
-                                    <div className="profile-button" >
-                                        <Form.Item>
-                                            <div className='disney_button'>
-                                                <ButtonComponent text="Save Update" onClick={showModal} />
-                                                <Loader type="Oval" color="#00BFFF" height={30} visible={loading} width={30} style={{ margin: "10px" }} />
-                                                <PageHeaderComp title="I already have an account" style={{ fontSize: "16px", color: "#276AFF", cursor: "pointer", marginLeft: "20px", marginTop: "10px" }} onClick={() => navigate('/login', { replace: true })} />
-                                            </div>
+                    <div style={{textAlign: "center"}}>
+                        <PageHeaderComp title="Create An Account" />
+
+                    </div>
+                    <div className='profile-form' style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <h3>Selected Plan:<b> {state?.option}</b></h3>
+                        <h3>Price:<b> N{price}</b></h3>
+                        <br />
+                        <Form form={form} layout="vertical">
+
+                            <div className="">
+                                <div className='form-group'>
+                                    <Form.Item label="Premium Type" required tooltip="Select premium type">
+                                        <Select defaultValue="Select premium type" onChange={e => handlePremium(e)} value={values?.premium_type} style={{ width: "250px", marginRight: "10px" }}>
+                                            <Option value="individual">Indivual</Option>
+                                            <Option value="family">Family</Option>
+                                        </Select>
+                                    </Form.Item>
+                                    <Form.Item label="Category" required tooltip="Select a category">
+                                        <Select defaultValue="Select Category" onChange={e => setValues(d => ({ ...d, category: e }))} value={values?.category} style={{ width: "250px", marginRight: "10px" }}>
+                                            <Option value="self pay">Self Pay</Option>
+                                            <Option value="corporate">Corporate</Option>
+                                        </Select>
+                                    </Form.Item>
+                                    {(values.category === 'corporate') ?
+                                        <Form.Item label="Association Code" required tooltip="Enter your Association code">
+                                            <Input onBlur={handleFocusOut} onChange={e => setValues(d => ({ ...d, social_no: e.target.value }))} autoFocus value={values?.social_no} placeholder="23SWIWQQ" style={{ width: "250px", marginRight: "10px" }} />
+                                            <p style={{ color: "red", fontSize: "12px" }}>{socialwarn}</p>
+
                                         </Form.Item>
-                                    </div>
-                                    <ModalContent isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel} />
-                                </Form>
+                                        : null}
+                                </div>
+                                <div className='form-group'>
+                                    <Form.Item label="Full Name" required tooltip="Enter your Full name">
+                                        <Input onChange={e => setValues(d => ({ ...d, name: e.target.value }))} autoFocus value={values?.name} placeholder="Musa Umar" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                    <Form.Item label="Add additional dependents" required tooltip="Input number of dependents">
+                                        <Select defaultValue="0" style={{ width: "250px", marginRight: "10px" }} onChange={e => handleDependent(e)} value={addedHeads}  >
+                                            <Option value="0">0</Option>
+                                            <Option value="1">1</Option>
+                                            <Option value="2">2</Option>
+                                            <Option value="3">3</Option>
+                                            <Option value="4">4</Option>
+                                            <Option value="5">5</Option>
+                                            <Option value="6">6</Option>
+                                            <Option value="7">7</Option>
+                                            <Option value="8">8</Option>
+                                            <Option value="9">9</Option>
+                                            <Option value="10">10</Option>
+                                        </Select>
+                                    </Form.Item>
+                                </div>
+                                <div className='form-group'>
+                                    <Form.Item label="Email" required tooltip={{ title: 'Enter your email address', icon: <InfoCircleOutlined /> }}>
+                                        <Input type="email" onChange={e => setValues(d => ({ ...d, email: e.target.value }))} value={values?.email} placeholder="example@gmail.com" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                    <Form.Item label="Confirm Email" required tooltip={{ title: 'Confirm your email address', icon: <InfoCircleOutlined /> }}>
+                                        <Input type="email" onChange={e => setValues(d => ({ ...d, confirm_email: e.target.value }))} value={values?.confirm_email} placeholder="example@gmail.com" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                </div>
+                                <div className='form-group'>
+                                    <Form.Item label="Phone Number" required tooltip={{ title: 'Enter your phone number', icon: <InfoCircleOutlined /> }}>
+                                        <Input onChange={e => setValues(d => ({ ...d, phone: e.target.value }))} value={values?.phone} placeholder="0801 234 5678" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                    <Form.Item label="Confirm Phone Number" required tooltip={{ title: 'Confirm your phone number', icon: <InfoCircleOutlined /> }}>
+                                        <Input onChange={e => setValues(d => ({ ...d, confirm_phone: e.target.value }))} value={values?.confirm_phone} placeholder="0801 234 5678" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                </div>
+                                <div className='form-group'>
+                                    <Form.Item label="Password" required tooltip="Password should be more than six characters">
+                                        <Input onChange={e => setValues(d => ({ ...d, password: e.target.value }))} value={values?.password} type='password' placeholder="*********" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                    <Form.Item label="Confirm Password" required tooltip="Password should be more than six characters">
+                                        <Input onChange={e => setValues(d => ({ ...d, confirm_password: e.target.value }))} value={values?.confirm_password} type='password' placeholder="*********" style={{ width: "250px", marginRight: "10px" }} />
+                                    </Form.Item>
+                                </div>
                             </div>
-                        </Col>
-                    </Row>
+                            {error ? <ErrorMessage message={error} /> : null}
+                            <div className="profile-button" >
+                                <Form.Item>
+                                    <div className='disney_button'>
+                                        <ButtonComponent text="Submit" onClick={showModal} />
+                                        <Loader type="Oval" color="#00BFFF" height={30} visible={loading} width={30} style={{ margin: "10px" }} />
+                                        <PageHeaderComp title="I already have an account" style={{ fontSize: "16px", color: "#276AFF", cursor: "pointer", marginLeft: "20px", marginTop: "10px" }} onClick={() => navigate('/login', { replace: true })} />
+                                    </div>
+                                </Form.Item>
+                            </div>
+                            <ModalContent isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel} />
+                        </Form>
+                    </div>
+
                 </div>
             </div>
         </Structure>

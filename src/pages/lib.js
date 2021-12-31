@@ -26,12 +26,11 @@ lib.login = async (data) => {
 }
 
 
-lib.saveNewProfile = async (data, header) => {
+lib.saveNewProfile = async (data) => {
     let uri = '';
     try {
         uri = `?save-new-profile`;
-        console.log(header);
-        request.defaults.headers['Content-Type'] = 'multipart/form-data';
+ 
         return await (await request.post(uri, data))
     } catch (e) {
         return { status: 'error', msg: e?.response?.data?.msg || e?.message }
@@ -39,11 +38,61 @@ lib.saveNewProfile = async (data, header) => {
 }
 
 
+lib.getPrincipal = async (data) => {
+    let uri = '';
+    try {
+        uri = `?getPrincipal`;
+ 
+        return await (await request.post(uri, data)).data
+    } catch (e) {
+        return { status: 'error', msg: e?.response?.data?.msg || e?.message }
+    }
+}
+
+
+lib.getDependent = async (data) => {
+    let uri = '';
+    try {
+        uri = `?getDependents`;
+ 
+        return await (await request.post(uri, data)).data
+    } catch (e) {
+        return { status: 'error', msg: e?.response?.data?.msg || e?.message }
+    }
+}
+
+
+lib.sendImage = async (data) => {
+   
+    let uri = '';
+    try {
+        uri = `?upload`;
+ 
+        return await (await request.post(uri, data)).data
+    } catch (e) {
+        return { status: 'error', msg: e?.response?.data?.msg || e?.message }
+    }
+}
+
+
+
+lib.validatSocial = async (data) => {
+    let uri = '';
+    try {
+        uri = `?validate_social`;
+ 
+        return await (await request.post(uri, data)).data
+    } catch (e) {
+        return { status: 'error', msg: e?.response?.data?.msg || e?.message }
+    }
+}
+
+
+
 lib.saveDependent= async (data) => {
     let uri = '';
     try {
         uri = `?save-dependent-profile`;
-        console.log(data);
         return await (await request.post(uri, data))
     } catch (e) {
         return { status: 'error', msg: e?.response?.data?.msg || e?.message }
@@ -55,7 +104,29 @@ lib.getProviders= async (data) => {
     let uri = '';
     try {
         uri = `?getProviders`;
-        return await (await request.post(uri))
+        return await (await request.post(uri, data)).data
+    } catch (e) {
+        return { status: 'error', msg: e?.response?.data?.msg || e?.message }
+    }
+}
+
+
+lib.updateBio= async (data) => {
+    let uri = '';
+    try {
+        uri = `?update-profile`;
+        return await (await request.post(uri, data)).data
+    } catch (e) {
+        return { status: 'error', msg: e?.response?.data?.msg || e?.message }
+    }
+}
+
+
+lib.suggestFacility= async (data) => {
+    let uri = '';
+    try {
+        uri = `?saveProvider`;
+        return await (await request.post(uri, data)).data
     } catch (e) {
         return { status: 'error', msg: e?.response?.data?.msg || e?.message }
     }

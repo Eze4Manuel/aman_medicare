@@ -209,26 +209,25 @@ const Pricing = () => {
 
                 <div className='pricing-table'>
                     <Tabs centered defaultActiveKey="1" onChange={callback}>
-                        <TabPane tab="BASIC" key="1" style={{ textAlign: "center" }}>
+                        {/* <TabPane tab="BASIC" key="1" style={{ textAlign: "center" }}>
                             <Table style={{ margin: "auto", textAlign: "center" }} dataSource={dataSourceBasic} columns={columnBasic} pagination={{ position: ['none', 'none'] }} />
-                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "BASIC"  }})} />
-
-                        </TabPane>
+                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "BASIC", price: 1500, sixPrice: 9000  }})} />
+                        </TabPane> */}
                         <TabPane tab="BRONZE" key="2">
                             <Table dataSource={dataSourceBronze} columns={columnBronze} pagination={{ position: ['none', 'none'] }} />
-                            <SelectButton text="Select This Plan" onClick={() =>navigate('/register', {state: { option: "BRONZE"  }})} />
+                            <SelectButton text="Select This Plan" onClick={() =>navigate('/register', {state: { option: "BRONZE", price: 35784, sixPrice: 136122 }})} />
                         </TabPane>
                         <TabPane tab="SILVER" key="3">
                             <Table dataSource={dataSourceSilver} columns={columnSilver} pagination={{ position: ['none', 'none'] }} />
-                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "SILVER"  }})} />
+                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "SILVER", price: 55394, sixPrice: 203406 }})} />
                         </TabPane>
                         <TabPane tab="GOLD" key="4">
                             <Table dataSource={dataSourceGold} columns={columnGold} pagination={{ position: ['none', 'none'] }} />
-                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "GOLD"  }})} />
+                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "GOLD", price: 96066, sixPrice: 356365  }})} />
                         </TabPane>
                         <TabPane tab="PLATINIUM" key="5">
                             <Table dataSource={dataSourcePlatinium} columns={columnPlatinium} pagination={{ position: ['none', 'none'] }} />
-                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "PLATINIUM"  }})} />
+                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "PLATINIUM", price: 145836, sixPrice: 534930 }})} />
                         </TabPane>
                     </Tabs>
                 </div>

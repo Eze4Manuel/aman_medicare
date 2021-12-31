@@ -34,9 +34,10 @@ const Login = () => {
             set(reqData?.data)
             setTimeout(() => {
                 navigate('/predashboard');
-            }, 2000
+            }, 500
             )
         }
+        console.log(reqData);
     }; 
 
     return (
@@ -51,13 +52,7 @@ const Login = () => {
                             <div className="p-fluid p-formgrid p-grid p-mx-5">
                                 <div style={{ width: '100%', marginTop: "35px" }} className="container">
                                     <div className="row">
-                                        <Form
-                                            layout={"vertical"}
-                                            form={form}
-                                            initialValues={{
-                                                layout: formLayout,
-                                            }}
-                                        >
+                                        <Form layout={"vertical"} form={form} initialValues={{layout: formLayout }} >
                                             <Form.Item label="Email or Policy or Phone number" required tooltip="This is a required field" >
                                                 <Input onChange={e => setValues(d => ({ ...d, policy_no: e.target.value }))} autoFocus value={values?.fullName} placeholder="example@email.com" style={{ padding: "10px", borderRadius: "6px" }} />
                                             </Form.Item>
