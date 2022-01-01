@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNotifications } from '@mantine/notifications';
 
 import {Modal, Button } from 'antd';
@@ -10,7 +10,6 @@ import { useAuth } from '../../core/hooks/useAuth';
 
 import lib from '../lib';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { useEffect } from 'react/cjs/react.development';
 
 
 
@@ -34,23 +33,23 @@ const EditBio = (props) => {
 
 
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let obj = {
-  //       state: props.data?.state,
-  //       plan_type: user?.insurance_package
-  //     }
-  //     let reqData = await lib.getProviders(obj);
-  //     console.log(reqData);
+  useEffect(() => {
+    (async () => {
+      let obj = {
+        state: props.data?.state,
+        plan_type: user?.insurance_package
+      }
+      let reqData = await lib.getProviders(obj);
+      console.log(reqData);
 
-  //     if (reqData.data?.error === 1) {
-  //       helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.data.message })
-  //     }
-  //     if (reqData?.error === 0) {
-  //       setStateHealtCare(reqData.data)
-  //     }
-  //   })()
-  // })
+      if (reqData.data?.error === 1) {
+        helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.data.message })
+      }
+      if (reqData?.error === 0) {
+        setStateHealtCare(reqData.data)
+      }
+    })()
+  },[props.data?.state, user?.insurance_package, notify])
 
 
   const handleBioOk = async () => {

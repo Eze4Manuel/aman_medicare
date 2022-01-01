@@ -2,7 +2,7 @@ import { Table } from 'antd';
 
 import './pricing.scss';
 import aman from '../../assets/images/icon/person.png'; // Tell webpack this JS file uses this image
-import logo from '../../assets/images/icon/logogreen.png'; // Tell webpack this JS file uses this image
+// import logo from '../../assets/images/icon/logogreen.png'; // Tell webpack this JS file uses this image
 import { Tabs } from 'antd';
 import { SelectButton } from '../../components/actionSelect/actionSelect'
 import { useNavigate } from "react-router-dom";
