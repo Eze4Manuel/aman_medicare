@@ -70,7 +70,7 @@ const PreDashboard = () => {
                 setData(principal);
             }
         })()
-    }, [navigate, notify, user])
+    }, [navigate, user])
 
 
     // Getting dependent
@@ -81,7 +81,7 @@ const PreDashboard = () => {
             }
             let reqData = await lib.getDependent(payload);
             if (reqData?.error === 1) {
-                helpers.alert({ notifications: notify, icon: 'error', color: 'red', message: reqData.message })
+
             }
             if (reqData?.error === 0) {
                 let dependent = reqData.data.map(elem => (
@@ -90,9 +90,8 @@ const PreDashboard = () => {
                 setDependentList(dependent)
             }
             console.log(reqData);
-
         })()
-    }, [notify, user?.policy_no])
+    }, [ user?.policy_no])
 
 
     const showDependentModal = () => {
@@ -343,7 +342,7 @@ const DependantEdit = (props) => {
                                                     </Select>
                                                 </Form.Item>
                                                 <Form.Item label="LGA" required tooltip="Enter your local govenrment">
-                                                    <Input onChange={e => setValues(d => ({ ...d, lga: e.target.value }))} value={values?.lga} placeholder="3" style={{ width: "250px", marginRight: "10px" }} />
+                                                    <Input onChange={e => setValues(d => ({ ...d, lga: e.target.value }))} value={values?.lga} placeholder="lga" style={{ width: "250px", marginRight: "10px" }} />
                                                 </Form.Item>
                                             </div>
 
@@ -646,7 +645,11 @@ const PricipalEdit = (props) => {
                                                     </Select>
                                                 </Form.Item>
                                             </div>
-
+                                            <div className='form-group'>
+                                                <Form.Item label="" required tooltip="Enter your Medical Condition" style={{ marginRight: "20px" }} >
+                                                    <SuggestFaculty />
+                                                </Form.Item>
+                                            </div>
                                             <div className='form-group'>
                                                 <Form.Item label="Contact Address" required tooltip="Contact address" style={{ marginRight: "20px" }} >
                                                     <TextArea onChange={e => setValues(d => ({ ...d, contact_address: e.target.value }))} value={values?.contact_address} showCount maxLength={250} style={{ height: 60, width: 250 }} />

@@ -2,7 +2,7 @@ import { Table } from 'antd';
 
 import './pricing.scss';
 import aman from '../../assets/images/icon/person.png'; // Tell webpack this JS file uses this image
-// import logo from '../../assets/images/icon/logogreen.png'; // Tell webpack this JS file uses this image
+import { PageHeaderComp } from '../../components/pageHeader/pageHeader';
 import { Tabs } from 'antd';
 import { SelectButton } from '../../components/actionSelect/actionSelect'
 import { useNavigate } from "react-router-dom";
@@ -228,6 +228,8 @@ const Pricing = () => {
                             <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "PLATINIUM", price: 145836, sixPrice: 534930 }})} />
                         </TabPane>
                     </Tabs>
+                    <PageHeaderComp title="I already have an account" style={{ fontSize: "16px", color: "#276AFF", cursor: "pointer", marginLeft: "20px", marginTop: "10px", textAlign: "center" }} onClick={() => navigate('/login', { replace: true })} />
+
                 </div>
             </div>
         </div>

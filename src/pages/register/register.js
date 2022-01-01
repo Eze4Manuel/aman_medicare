@@ -238,7 +238,6 @@ const Register = (props) => {
                                     <div className='disney_button'>
                                         <ButtonComponent text="Submit" onClick={showModal} />
                                         <Loader type="Oval" color="#00BFFF" height={30} visible={loading} width={30} style={{ margin: "10px" }} />
-                                        <PageHeaderComp title="I already have an account" style={{ fontSize: "16px", color: "#276AFF", cursor: "pointer", marginLeft: "20px", marginTop: "10px" }} onClick={() => navigate('/login', { replace: true })} />
                                     </div>
                                 </Form.Item>
                             </div>

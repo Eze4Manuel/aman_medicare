@@ -49,7 +49,7 @@ const EditBio = (props) => {
         setStateHealtCare(reqData.data)
       }
     })()
-  },[props.data?.state, user?.insurance_package, notify])
+  },[props.data?.state, user?.insurance_package])
 
 
   const handleBioOk = async () => {
