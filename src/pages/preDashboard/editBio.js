@@ -81,10 +81,9 @@ const EditBio = (props) => {
     setLoading(false);
   };
 
-
   return (
     <>
-    <Button type="text" onClick={showBioModal}>Edit Bio</Button>
+    <Button style={{backgroundColor: "#09A479", border: "none"}}  type="primary" onClick={showBioModal}>Edit Bio</Button>
       <Modal title="Edit Healthcare Facility" visible={isBioVisible} onOk={handleBioOk} onCancel={handleBioCancel}>
         <div className="profile-password" >
           <div className='form-group'>

@@ -81,7 +81,7 @@ const UploadImage = (props) => {
 
   return (
     <>
-      <Button type="text" onClick={showModal}>Edit Image</Button>
+      <Button type="primary" style={{backgroundColor: "#09A479", border: "none"}}  onClick={showModal}>Edit Image</Button>
        <Modal title="Upload Identifications" visible={isUploadVisible} onOk={handleOk} onCancel={handleCancel}>
 
         <div className="profile-password" >

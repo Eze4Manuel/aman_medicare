@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './register.scss';
 import { Select } from 'antd';
 import Structure from "../../components/layout/index";
-import logom from '../../assets/images/icon/logom.png'; // Tell webpack this JS file uses this image
+import logom from '../../assets/images/icon/logogreen.png'; // Tell webpack this JS file uses this image
 import { PageHeaderComp } from '../../components/pageHeader/pageHeader';
 import { useNotifications } from '@mantine/notifications';
 import { useAuth } from '../../core/hooks/useAuth';
@@ -16,6 +16,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { Modal } from 'antd';
 import lib from '../lib';
 import formValidator from '../formvalidation';
+import aman from '../../assets/images/icon/person.png'; // Tell webpack this JS file uses this image
 
 const Register = (props) => {
     const [form] = Form.useForm();
@@ -30,8 +31,8 @@ const Register = (props) => {
     const { Option } = Select;
     const notify = useNotifications();
     const [, setData] = useState();
-    const [basePrice, ] = useState(state?.price);
-    const [familyPrice, ] = useState(state?.sixPrice);
+    const [basePrice,] = useState(state?.price);
+    const [familyPrice,] = useState(state?.sixPrice);
     const [price, setPrice] = useState('');
     const [addedHeads, setAddedHeads] = useState(0);
     const [premiumType, setPremiumType] = useState('Individual');
@@ -156,7 +157,10 @@ const Register = (props) => {
                     <div className="profile-image" style={{ backgroundImage: `url(${logom})` }}></div>
                 </div>
                 <div className="profile-top" >
-                    <div style={{textAlign: "center"}}>
+                    <div className='pricing-image' style={{ textAlign: "center" }}>
+                        <img src={logom} style={{ width: "150px" }} alt="img" />
+                    </div>
+                    <div style={{ textAlign: "center" }}>
                         <PageHeaderComp title="Create An Account" />
 
                     </div>
@@ -233,9 +237,9 @@ const Register = (props) => {
                                 </div>
                             </div>
                             {error ? <ErrorMessage message={error} /> : null}
-                            <div className="profile-button" >
-                                <Form.Item>
-                                    <div className='disney_button'>
+                            <div className="profile-button" style={{ textAlign: 'center', margin: 'auto' }}>
+                                <Form.Item style={{ textAlign: 'center', margin: 'auto' }}>
+                                    <div className='disney_button' style={{ textAlign: 'center', justifyContent: 'center' }}>
                                         <ButtonComponent text="Submit" onClick={showModal} />
                                         <Loader type="Oval" color="#00BFFF" height={30} visible={loading} width={30} style={{ margin: "10px" }} />
                                     </div>
@@ -258,9 +262,150 @@ const ModalContent = (props) => {
     return (
         <Modal width={800}
             style={{ top: 20 }}
-            title="Aman Medicare Terms and Conditions" visible={props.isModalVisible} onOk={props.handleOk} onCancel={props.handleCancel}>
+            title="Aman Medicare Terms and Conditions" visible={props.isModalVisible} onOk={props.handleOk} onCancel={props.handleCancel} okText={'Agree'}>
             <div className='terms' style={{ height: "500px", overflow: "scroll" }}>
-                <div>
+                <pre>
+                    Section I - General Provisions <br></br>
+                    Enrollee, membership, coverable persons and eligibility for cover <br></br>
+
+                    By subscribing to any of Aman Medicare plans, enrollees automatically consent to become associate members of Aman Medicare Association. Associate members are the collective owners of the pool of contributions (premiums) from which medical benefits are paid, but they do not possess voting rights.<br></br>
+                    Only members who have fully paid up their contributions shall be entitled to health cover.<br></br>
+                    The enrollee is the natural or legal person who has subscribed to any of Aman Medicare’s health plans. The coverable persons are the enrollees and their dependents. Newborn infants of covered persons shall be included in the cover after birth, on the same plan as their parents. This is subject to the following conditions:<br></br>
+                    <br></br>
+                    -  they are enrolled with Aman Medicare within 2 months of the day of birth with retrospective effect, and<br></br>
+                    the health cover contract was concluded at least 3 months earlier without interruption and<br></br>
+                    no other health cover exists.<br></br>
+                    <br></br>
+                    The following persons are not eligible and will not be given cover, even if payment of contributions is made:<br></br>
+                    Persons permanently in need of care as well as persons whose participation in everyday life is permanently excluded. The mental condition and objective living conditions in particular of said persons shall be taken into account as regards classification. Persons in need of care are those persons who largely require external assistance to complete everyday tasks;<br></br>
+                    The health cover contract cannot be signed for persons who do not fulfill the requirements of Clauses 1.1 and 1.2, even if the contribution is paid. If, however, the contribution is paid for these persons, a refund is available to the person paying the contribution.<br></br>
+                    <br></br>
+                    Taking out cover, commencement, duration and termination of the policy and health	cover<br></br>
+                    <br></br>
+                    Enrollment and commencement of the cover<br></br>
+                    Health cover plans can be purchased at any time.<br></br>
+                    The health cover contract is concluded when Aman Medicare has received the correctly completed application form (either electronically or physically) for this and has sent you confirmation of cover. The application is only considered correctly completed when it contains all the requested information in an unambiguous and complete form.<br></br>
+                    <br></br>
+                    If clauses 2.1.1 or 2.1.2 are not met, the cover is not valid even if the contribution is paid. In this case, the person paying the contribution is entitled to a refund.<br></br>
+                    <br></br>
+                    Commencement of Healthcare Cover<br></br>
+                    <br></br>
+                    Waiting Period: means the period of time commencing on the date of commencement of the cover during which an enrollee is required to wait to be entitled to access care under plans. The length of this period is 14 days. Therefore, a cover purchased becomes active 14 days after the completion of registration.<br></br>
+                    <br></br>
+                    Duration<br></br>
+                    <br></br>
+                    All plans are quoted for a period of one year, and can be renewed annually.<br></br>
+                    <br></br>
+                    Termination<br></br>
+                    <br></br>
+                    The statutory provisions concerning the right to termination for cause remain unaffected by these agreements. The health care cover ends upon termination of the contractual cover. The contractual cover also ends for covered events not yet concluded or pending.<br></br>
+                    <br></br>
+                    at the agreed time;<br></br>
+                    with the death of the enrollee; the covered persons may extend the health cover policy within 2 months of the enrollee’s death by nominating a successor health cover beneficiary;<br></br>
+                    if the eligibility criteria are no longer met;<br></br>
+                    Aman Medicare is at liberty to cancel the cover of any covered member(s) who has/have misled it or breached any term of this agreement, giving incorrect, incomplete or misleading information, failed to provide any reasonable information which Aman Medicare requested, conspired with a third party to obtain undue benefit from this policy, or submitted a claim in which is clearly fraudulent or unfounded. In any of these circumstances, Aman Medicare has the right to cancel the members cover from the date of commencement (without refund of any portion of unused contribution) and recover from him/her any benefit it might have paid as a result of such claim.<br></br>
+                    Enrollees making annual payments can cancel their policy within the first 30 days of the commencement of the policy. An enrollee that decides to cancel or terminate his policy/cover must notify Aman Medicare in writing, and the enrollee shall be entitled to a refund of contribution paid less (a) any amounts incurred on their behalf as medical and other expenses. (b). An administrative (Wakala fee) of 25% of the contribution paid. No refund shall apply in the case of termination/cancellation made by enrollee after 30 days of the commencement of policy.<br></br>
+                    In the rare circumstance where Aman Medicare has to terminate the policy, it shall notify the enrollee in writing to their last known address or electronically via the last known email address. In such an event, Aman Medicare will refund to the enrollee an amount equal to pro-rata value of their unused contribution. <br></br>
+                    <br></br>
+                    Health cover Year<br></br>
+                    <br></br>
+                    A health cover year is considered to be a period of 12 months. The first health cover year commences on the date the health cover policy begins. If a benefit which is limited per health cover year is claimed in a year, the health cover for this benefit (once the benefit limit is reached) is restored only after this health cover year elapses. If a benefit is limited per covered year, health cover for this benefit continues until the benefit limit is reached, even if the contract duration is less than 12 months.<br></br>
+                    <br></br>
+                    <br></br>
+                    Scope of the Cover<br></br>
+                    <br></br>
+                    The health cover applies only to healthcare providers within Nigeria.<br></br>
+                    <br></br>
+                    What requirements must be complied with when paying the Contributions?<br></br>
+                    <br></br>
+                    Contribution amount<br></br>
+                    The contribution for a covered person is as contained in the plans, available to the enrollee(s) at point of enrollment.<br></br>
+                    <br></br>
+                    Payment of the first or one-off contribution<br></br>
+                    <br></br>
+                    4.2.1	The first or one-time contribution is due at the start of the contract/relationship/membership.<br></br>
+                    <br></br>
+                    4.2.3 In addition, Aman Medicare will be entitled to terminate the contract so long as the contribution remains unpaid. <br></br>
+                    <br></br>
+                    Payment of subsequent contribution<br></br>
+                    <br></br>
+                    If the subsequent contribution is not paid on time, Aman Medicare will send you a reminder and will set a time limit of 2 weeks.<br></br>
+                    If you have still not made the payment when this deadline expires, Aman Medicare is entitled to terminate the contract, if it has drawn your attention to this when the reminder was sent.<br></br>
+                    <br></br>
+                    <br></br>
+                    Collection of contributions<br></br>
+                    <br></br>
+                    If you have agreed to the contribution being collected from your account by direct debit, this will take place as soon as the mandate has been set up. The payment is considered to have been made in a timely manner if Aman Medicare can collect the contribution on the due  date, and you do not dispute collection of the correct payment.<br></br>
+                    If Aman Medicare is unable to collect the contribution due for a reason beyond your control, the payment shall still be considered to be on time if payment is made immediately upon receipt of the written reminder from Aman Medicare.<br></br>
+                    <br></br>
+                    Contributions are due annually and the full annual amount is established at the start of annual cover or a renewal period thereof.<br></br>
+                    <br></br>
+                    Refunds<br></br>
+                    <br></br>
+                    Enrollees are required to access medically necessary care and services within Aman Medicare's plan covers and network of Providers alone and not pay out of pocket for covered services. In the odd event that an enrollee has to pay out of pocket, this only has to be in an emergency situation as qualified by a medical practitioner without influence of the enrollee. The refund will be made by Aman Medicare upon the enrollee providing the following documents within 30 days of encounter: (1) copy of medical report from the Health care practitioner indicating history of the medical condition, diagnosis and treatment administered, (2) Original Receipt for having made payment indicating the costs separately for consultation, each investigation, each procedure and each Drug and the quantity dispensed.<br></br>
+                    All refunds will be made only into the enrollees designated account based only on medical  necessity  as  might  be  reviewed  by  Aman Medicare's  in-house  medical practitioners and only at Aman Medicare's designated/customary rate irrespective of the cost of care. Also, refunds are only applicable where the same is received before receipt by Aman Medicare of the notice to terminate or expiration of a plan.<br></br>
+                    <br></br>
+                    <br></br>
+                    Categorization of Healthcare Facilities<br></br>
+                    <br></br>
+                    Healthcare Providers are categorized by Aman Medicare for the benefit of ease of access to care by its Enrollees. Aman Medicare reserves the right to review this categorization from time to time without prior recourse to an Enrollee. This could include (but not limited to) the addition and deletion of healthcare providers from the general list and/or from a specific plan provider list. An Enrollee will however always have access to a number of healthcare facilities within their applicable Aman Medicare network of Providers.<br></br>
+                    <br></br>
+                    <br></br>
+                    Section II - Description of benefits<br></br>
+                    Scope of health cover<br></br>
+                    <br></br>
+                    Medically necessary treatment of an enrollee due to illness or accident is considered to be a covered event. The covered event starts with your treatment. It ends once it is medically established that no further treatment is needed. If the treatment needs to be extended to an illness or consequences of an accident that is not causally linked to treatment up to that point, a new covered event shall be considered to have occurred. A covered event is also deemed to be the death of the enrollee, examinations and medically necessary treatments for complaints during pregnancy and delivery, vaccinations as well as outpatient check-ups.<br></br>
+                    During your stay, you have free choice of the doctors, dentists and hospitals recognised and accredited in the country of destination. Hospitals must be under permanent medical management. They must have sufficient diagnostic and therapeutic facilities and manage case histories. For treatments in sanatoriums that also carry out cures or sanatorium treatments, our written confirmation must first be obtained. Aman Medicare reimburses the costs arising in accordance with clause 2 (Covered benefits).<br></br>
+                    <br></br>
+                    1.3    Aman Medicare only pays for diagnostic and treatment methods    and medications that are universally or generally recognised by conventional medicine.<br></br>
+                    <br></br>
+                    Drugs and Medications: all enrollees are covered for drugs recommended in the course of their treatment for covered services as defined in the plan benefit except for excluded items. As a standard, enrollees shall be prescribed generic drugs. except where no generic option exists, in which case, prior approval will be sought by the provider to dispense branded medication. <br></br>
+                    In the event that the provider or enrollee prefers a branded option where a generic option is available, the differential of such option may be paid for directly by the enrollee to the provider. Where the provider does not maintain a stock of generic medications, a prescription should be collected and the generic medication taken from a pharmacy within Aman Medicare’s registered service providers. Where the medication is not available within the network of registered pharmacies, a pre-approval of Aman Medicare is necessary for the transaction to qualify for refund in line with Section I (4.4) above.<br></br>
+                    <br></br>
+                    In the event that the provider or enrollee prefers a branded option where a generic option is available, such option may be paid for directly by the enrollee to the provider. Kindly note that where the provider does not maintain a stock of generic medications, a prescription should be collected and the generic medication taken from a pharmacy for which Aman Medicare will be responsible.<br></br>
+                    <br></br>
+                    <br></br>
+                    Restrictions to Health care Cover<br></br>
+                    <br></br>
+                    Exclusions of cover<br></br>
+                    <br></br>
+                    Aman Medicare does not pay out:<br></br>
+                    <br></br>
+                    if you have wilfully brought about the covered event or attempt to make fraudulent representations to us as to the circumstances which are material to the grounds for providing cover and the amount of covered benefits;<br></br>
+                    Aman Medicare will not cover or pay for any treatment that was given before an Enrollee's commencement date of cover (including waiting periods) or after cancellation/termination of cover or during any period for which Aman Medicare is yet to receive premiums.<br></br>
+                    Aman will not cover or pay for any treatment that is not specifically covered under the Benefit Schedule of the Policy. Aman Medicare will not cover nor pay for other conditions or procedures which are not specified as covered services in the schedule of benefits for the plans. Similarly,   the   plans   do   not   cover   self-medication   or   Consultations   with unrecognized/un-orthodox consultants, hospitals, family doctors, therapists, dental practitioners  or  complementary  medicines   practitioners.  In  the  same  vein, complications from such unrecognized/un-orthodox places are not covered under the plans.<br></br>
+                    <br></br>
+                    <br></br>
+                    Transferability of Cover: All Aman Medicare cover plans are person specific and non-transferable.<br></br>
+                    <br></br>
+                    Confidentiality: Aman Medicare is under contractual and medical obligation to protect the information of its members and it is bound by law and regulatory standards to maintain the privacy of its enrollees’ medical information and records. Aman Medicare also holds its employees, providers, and consultants to strict policies and procedures in protecting members/enrollees information and medical records. The information collected from an enrollee at enrollment must be adequately protected and preserved. <br></br>
+                    <br></br>
+                    <br></br>
+                    5. Complaint Resolution<br></br>
+                    <br></br>
+
+
+                    Section III - TAKAFUL PRINCIPLES AND CONDITIONS<br></br>
+                    1) The principles of takaful and provisions of Shariah shall be applicable to this policy as guided by AAOIFI Shariah Standards and the advice of qualified local scholars.<br></br>
+                    2) Aman Medicare shall expend the cost of medical care given to the enrollees out of the contribution pool (takaful funds) according to the terms and conditions set forth in this policy and the scope defined by the policyholder’s plan.<br></br>
+                    3) An enrollee shall donate all or part of his contribution to pay for the medical expenses of any of the other enrollees as per the cooperative or takaful principles.<br></br>
+                    4) Aman Medicare shall manage the takaful operation for the benefit of the enrollees as Wakil (agent) and will charge a maximum annual administrative fee of 25% based on the principle of Wakala (agency) on the Gross Annual Contribution.<br></br>
+                    5) Aman Medicare shall invest the takaful fund for the collective benefit of enrollees on a Mudaraba basis for a fee equal to a percentage of the realized profits. It will be entitled to 50% share of the net investment profit (if any) as Mudarib fee for its management of the investment portfolio which will be calculated at the end of each investment cycle.<br></br>
+                    6) The Wakala fee and Mudarib fee percentages will be announced in advance before the beginning of the financial year and will be mentioned in every policy or in renewal notices.  <br></br>
+                    7) Aman Medicare shall distribute from the underwriting surplus to eligible enrollees as follows:<br></br>
+                    a. An enrollee will not have the right to receive any share of the underwriting surplus, if he/she received medical care where the cost is equivalent to 50% or more of his/her contribution.<br></br>
+                    b. An enrollee will have the right to receive a proportionate share of the underwriting surplus (after deducting the cost of medical care) if the cost of medical benefit enjoyed is less than 50% of the contributions.<br></br>
+                    c. For the purpose of (a) above, an enrollee’s financial position shall be deemed as one position (aggregated) in the event of holding multiple types of health plans with Aman Medicare.<br></br>
+                    8) If the enrollee does not collect his/her share of surplus under (7) above, within a period of 12 months from the end of the financial year during which his policy expires, that share of surplus shall be considered as a donation by the enrollee to a takaful reserve fund to preserve the objective of providing health cover to current and future enrollees of Aman Medicare.<br></br>
+                    9) No more than 50% of the underwriting surplus shall be available for distribution to enrollees in line with section 7 above. Undistributed surplus shall be deemed donated to the takaful reserve fund. Each year, claims by service providers and expenses on behalf of enrollees shall first be charged against the contribution pool (takaful fund) before applying to the takaful reserve fund. <br></br>
+                    10) In the event of the Association’s (Aman Medicare) liquidation, takaful reserve fund residual shall be used for charity as decided by the Sharia Advisers after settlement of all the enrollees’ rights and claims from health service providers.<br></br>
+                    <br></br>
+                    DATA CONSENT DECLARATION <br></br>
+
+                    By Clicking “Agree” I hereby confirm by myself/through my authorized representative that I have the legal capacity to give consent and hereby by myself/through my authorized representative voluntarily grant my consent to Aman Medicare Association and its duly appointed representatives, the authority to access, retrieve, process, store, transfer as well as use for any legitimate and lawful purpose, my personal and/or medical information including all relevant data envisaged by the extant law including but not limited to the Nigerian Data Protection Regulation (and any amendment thereto) solely for the purpose of carrying out their dues and responsibilities as my mutual health association. I confirm that I am aware of my rights, liabilities, and method to withdraw my consent herein at any time by notifying Aman Medicare in writing and accordingly request that this consent remain in full force and subsist until such a time as when I withdraw the same. In addition, I hereby grant the same consent to Aman Medicare on behalf of all my dependant(s) who are minors and accordingly request that this consent remain in full force and subsist until such a time as when I withdraw same or such a time when my dependent each personally withdraws the same after attaining the statutory age of majority.<br></br>
+
+                </pre>
+                {/* <div>
                     <h3>Section I - General Provisions</h3>
                     <div>
                         <h4>Policyholder, membership, insurable persons and insurance eligibility</h4>
@@ -418,7 +563,7 @@ const ModalContent = (props) => {
                             <li>No more than 50% of the surplus shall be deducted as a donation for the takaful reserve provision. In case of the Association’s (Aman Medicare) liquidation, this reserve will be used for charity as decided by the Sharia Advisers after settlement of all the policyholders’ rights and claims from health service providers.</li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
         </Modal >
     )

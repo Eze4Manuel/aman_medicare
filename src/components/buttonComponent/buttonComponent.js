@@ -5,7 +5,7 @@ export const ButtonComponent = (props) => {
     let styles = {
         color: "#ffffff",
         fontWeight: "800",
-        background: "#276AFF",
+        background: "#3597d3",
         border: "none",
         paddingTop: "12px",
         paddingBottom: "12px",

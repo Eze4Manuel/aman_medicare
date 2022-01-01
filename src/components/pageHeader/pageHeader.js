@@ -3,7 +3,8 @@
 export const PageHeaderComp = (props) => {
     
   let styles = {
-      color: "#276AFF",
+      // color: "#48ba6f",
+      color: '#3597d3',
       fontWeight: "800"
   }
   return (

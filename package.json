@@ -2,6 +2,7 @@
   "name": "amed_med",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://clients.amanmedicare.org/",
   "dependencies": {
     "@mantine/core": "^3.3.5",
     "@mantine/hooks": "^3.3.5",

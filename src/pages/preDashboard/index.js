@@ -696,7 +696,26 @@ const PricipalEdit = (props) => {
 
 const ListOfDependent = (props) => {
 
+   let styleTitle = {
+        color: "#3597d3",
+        fontSize: "13px",
+        marginRight: "16px",
 
+    }
+    let styleDesc = {
+        color: "#000",
+        fontSize: "13px",
+        fontWeight: 'normal',
+    }
+    let styleHead = {
+        color: "#000",
+        fontSize: "16px",
+        fontWeight: 'bold',
+    }
+    let imageStyle = {
+        width: "70px",
+        height: "70px"
+    }
 
     return (
         <div className='list_data'>
@@ -706,30 +725,23 @@ const ListOfDependent = (props) => {
                         <List.Item.Meta
                             rowKey
                             // onClick={() => console.log(props.data)}
-                            avatar={<Avatar src={`${uri2}${props.data?.pic_name}` ?? logom} />}
-                            title={`${props.data?.first_name} ${props.data?.middle_name} ${props.data?.surname}`}
+                            avatar={<Avatar style={imageStyle} src={`${uri2}${props.data?.pic_name}` ?? logom} />}
+                            title={<h3 style={styleHead}>{props.data?.first_name} {props.data?.middle_name} {props.data?.surname}</h3>}
                             description={
                                 <div>
-                                    <h5><b style={{ fontSize: "15px" }}>Principal Account Holder</b></h5>
-                                    <h5><b style={{ fontSize: "15px" }}>Policy No:</b> <span>   {props.data?.policy_no}</span></h5>
-                                    <h5><b style={{ fontSize: "15px" }}> Insurance No:</b> <span>  {props.data?.insurance_no}</span></h5>
-                                    <h5><b style={{ fontSize: "15px" }}>Insurance Package:</b> <span>  {props.data?.insurance_package}</span></h5>
-                                    <h5><b style={{ fontSize: "15px" }}>Primary Health Care:</b> <span>  {props.data?.primary_health_facility}</span></h5>
-                                    <h5><b style={{ fontSize: "15px" }}> Secondary Health Care: </b> <span> {props.data?.secondary_health_facility}</span></h5>
-                                    <h5><b style={{ fontSize: "15px" }}> State: </b> <span> {props.data?.state}</span></h5>
-                                    <h5><b style={{ fontSize: "15px" }}> Date: </b> <span> {props.data?.date}</span></h5>
+                                    <h5><b style={styleTitle}>Account Holder:</b> <span style={styleDesc}>  Principal</span></h5>
+                                    <h5><b style={styleTitle}>Policy No:</b> <span style={styleDesc}>   {props.data?.policy_no}</span></h5>
+                                    <h5><b style={styleTitle}> Insurance No:</b> <span style={styleDesc}>  {props.data?.insurance_no}</span></h5>
+                                    <h5><b style={styleTitle}>Insurance Package:</b> <span style={styleDesc}>  {props.data?.insurance_package}</span></h5>
+                                    <h5><b style={styleTitle}>Primary Health Care:</b> <span style={styleDesc}>  {props.data?.primary_health_facility}</span></h5>
+                                    <h5><b style={styleTitle}> Secondary Health Care: </b> <span style={styleDesc}> {props.data?.secondary_health_facility}</span></h5>
+                                    {/* <h5><b style={styleTitle}> Date: </b> <span style={styleDesc}> {props.data?.date}</span></h5> */}
+                                   <span style={{marginRight: "20px"}}> <UploadImage data={props.data} /></span>
+                                    <span><EditBio data={props.data} /></span>
                                 </div>
                             }
                         />
-                        <List.Item.Meta
-                            rowKey
-                            description={
-                                <div>
-                                    <UploadImage data={props.data} />
-                                    <EditBio data={props.data} />
-                                </div>
-                            }
-                        />
+                        
                     </List.Item>
                     :
                     null}
@@ -743,26 +755,18 @@ const ListOfDependent = (props) => {
                             <List.Item.Meta
                                 rowKey
                                 // onClick={() => console.log(item)}
-                                avatar={<Avatar src={`${uri2}${item.pic_name}` ?? logom} />}
-                                title={<h3><b>{item.first_name} {item.middle_name} {item.surname}</b></h3>}
+                                avatar={<Avatar style={imageStyle} src={`${uri2}${item.pic_name}` ?? logom} />}
+                                title={<h3 style={styleHead}><b>{item.first_name} {item.middle_name} {item.surname}</b></h3>}
                                 description={
                                     <div>
-                                        <h6><b style={{ fontSize: "14px" }}>Dependent</b></h6>
-                                        <h6><b style={{ fontSize: "14px" }}>Policy No:</b> <span>  {item.policy_no}</span></h6>
-                                        <h6><b style={{ fontSize: "14px" }}> Insurance No: </b> <span>{item.insurance_no}</span></h6>
-                                        <h6><b style={{ fontSize: "14px" }}>Primary Health Care: </b> <span>{item.primary_health_facility}</span></h6>
-                                        <h6><b style={{ fontSize: "14px" }}> Secondary Health Care:</b> <span> {item.secondary_health_facility}</span></h6>
-                                        <h6><b style={{ fontSize: "14px" }}> State:</b> <span> {item.state}</span></h6>
-                                        <h6><b style={{ fontSize: "14px" }}> Date:</b> <span> {item.date}</span></h6>
-                                    </div>
-                                }
-                            />
-                            <List.Item.Meta
-                                rowKey
-                                description={
-                                    <div>
-                                        <UploadImage data={item} />
-                                        <EditBio data={item} />
+                                        <h6><b style={styleTitle}>Account Holder:</b><span style={styleDesc}>  Dependent</span></h6>
+                                        <h6><b style={styleTitle}>Policy No:</b> <span style={styleDesc}>  {item.policy_no}</span></h6>
+                                        <h6><b style={styleTitle}> Insurance No: </b> <span style={styleDesc}>{item.insurance_no}</span></h6>
+                                        <h6><b style={styleTitle}>Primary Health Care: </b> <span style={styleDesc}>{item.primary_health_facility}</span></h6>
+                                        <h6><b style={styleTitle}> Secondary Health Care:</b> <span style={styleDesc}> {item.secondary_health_facility}</span></h6>
+                                        {/* <h6><b style={styleTitle}> Date:</b> <span style={styleDesc}> {item.date}</span></h6> */}
+                                        <span style={{marginRight: "20px"}}><UploadImage data={item} /></span>
+                                        <span style={{marginRight: "20px"}}><EditBio data={item} /> </span>
                                     </div>
                                 }
                             />
