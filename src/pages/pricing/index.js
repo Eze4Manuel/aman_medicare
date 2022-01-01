@@ -223,9 +223,9 @@ const Pricing = () => {
                             <Table dataSource={dataSourceGold} columns={columnGold} pagination={{ position: ['none', 'none'] }} />
                             <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "GOLD", price: 96066, sixPrice: 356365  }})} />
                         </TabPane>
-                        <TabPane tab="PLATINIUM" key="5">
+                        <TabPane tab="PLATINUM" key="5">
                             <Table dataSource={dataSourcePlatinium} columns={columnPlatinium} pagination={{ position: ['none', 'none'] }} />
-                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "PLATINIUM", price: 145836, sixPrice: 534930 }})} />
+                            <SelectButton text="Select This Plan" onClick={() => navigate('/register', {state: { option: "PLATINUM", price: 145836, sixPrice: 534930 }})} />
                         </TabPane>
                     </Tabs>
                     <PageHeaderComp title="I already have an account" style={{ fontSize: "16px", color: "#276AFF", cursor: "pointer", marginLeft: "20px", marginTop: "10px", textAlign: "center" }} onClick={() => navigate('/login', { replace: true })} />

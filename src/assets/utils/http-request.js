@@ -4,7 +4,12 @@ import axios from "axios";
 export const uri = 'https://app.amanmedicare.org/v1.1/' // staging
 export const uri2 = 'https://app.amanmedicare.org/v1.1/' // staging
 // const uri = 'https://api.urfood.com/v1' // live
-const Axios = axios.create({baseURL: uri});
+const header =  {
+    'Access-Control-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    mode: 'no-cors'
+  }
+const Axios = axios.create({baseURL: uri, headers: header });
 
  
 
