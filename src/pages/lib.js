@@ -18,7 +18,6 @@ lib.login = async (data) => {
     let uri = '';
     try {
         uri = `?login`;
-        console.log(data);
         return await (await request.post(uri, data))
     } catch (e) {
         return { status: 'error', msg: e?.response?.data?.msg || e?.message }
@@ -131,10 +130,5 @@ lib.suggestFacility= async (data) => {
         return { status: 'error', msg: e?.response?.data?.msg || e?.message }
     }
 }
-
-
-
-
-
 
 export default lib;
